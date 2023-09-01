@@ -18,15 +18,15 @@ namespace RingbitCar {
         Distance_Unit_inch
     }
     export enum Direction_turn {
-        //% block="right" enumval=0
+        //% block="vpravo" enumval=0
         right,
-        //% block="left" enumval=1
+        //% block="vlevo" enumval=1
         left
     }
     export enum Direction_run {
-        //% block="forward" enumval=0
+        //% block="dopředu" enumval=0
         forward,
-        //% block="backward" enumval=1
+        //% block="dozadu" enumval=1
         backward
     }
 
@@ -51,7 +51,7 @@ namespace RingbitCar {
     *For reference only
     */
     //% weight=25
-    //% blockId=steering angle block="spin %direction %angle degrees "
+    //% blockId=steering angle block="otoč se %direction o %angle stupňů "
     export function steering_angle(direction: Direction_turn, angle: number): void {
         let timeWait = (angle * 1000000) / 135;
         if (direction == 1) {
@@ -72,7 +72,7 @@ namespace RingbitCar {
     *For reference only
     */
     //% weight=29
-    //% blockId=distance_run block="go %direction to %distance cm"
+    //% blockId=distance_run block="popojeď %direction o %distance cm"
     export function running_distance(direction: Direction_run, distance: number): void {
         let timeWait = (distance * 1000000) / 100;
         if (direction == 0) {
@@ -87,7 +87,7 @@ namespace RingbitCar {
         }
     }
     //% weight=30
-    //% blockId=time_run block="go %direction for %time seconds"
+    //% blockId=time_run block="popojeď %direction %time sekund"
     export function running_time(direction: Direction_run, time: number): void {
         if (direction == 0) {
             forward();
@@ -105,7 +105,7 @@ namespace RingbitCar {
     * TODO: full speed move forward
     */
     //% weight=9
-    //% blockId=ringbitcar_forward block="go straight at full speed"
+    //% blockId=ringbitcar_forward block="jeď dopředu plnou rychlostí"
     export function forward(): void {
         pins.servoSetPulse(pin_left_wheel, 2400)
         pins.servoSetPulse(pin_right_wheel, 600)
@@ -115,7 +115,7 @@ namespace RingbitCar {
     * TODO: full speed move back
     */
     //% weight=8
-    //% blockId=ringbitcar_back block="reverse at full speed"
+    //% blockId=ringbitcar_back block="jeď dozadu plnou rychlostí"
     export function back(): void {
         pins.servoSetPulse(pin_left_wheel, 600)
         pins.servoSetPulse(pin_right_wheel, 2400)
@@ -125,7 +125,7 @@ namespace RingbitCar {
     * TODO: full speed turn left
     */
     //% weight=7
-    //% blockId=ringbitcar_left block="turn left at full speed"
+    //% blockId=ringbitcar_left block="toč se doleva plnou rychlostí"
     export function turnleft(): void {
         pins.servoSetPulse(pin_left_wheel, 600)
         pins.servoSetPulse(pin_right_wheel, 600)
@@ -136,7 +136,7 @@ namespace RingbitCar {
     * TODO: full speed turn right
     */
     //% weight=6
-    //% blockId=ringbitcar_right block="turn right at full speed"
+    //% blockId=ringbitcar_right block="toč se doprava plnou rychlostí"
     export function turnright(): void {
         pins.servoSetPulse(pin_left_wheel, 2400)
         pins.servoSetPulse(pin_right_wheel, 2400)
@@ -147,7 +147,7 @@ namespace RingbitCar {
     * TODO: stop
     */
     //% weight=5
-    //% blockId=ringbitcar_brake block="brake"
+    //% blockId=ringbitcar_brake block="zastav se"
     export function brake(): void {
         //pins.servoSetPulse(pin_left_wheel, 1500)
         //pins.servoSetPulse(pin_right_wheel, 1500)
@@ -162,7 +162,7 @@ namespace RingbitCar {
     * @param n the n from -100 (min) to 100 (max), eg:0
     */
     //% weight=4
-    //% blockId=ringbitcar_freestyle block="set left wheel speed at %m| right wheel speed at %n"
+    //% blockId=ringbitcar_freestyle block="nastav rychlost levého kola na %m| pravého kola na %n"
     //% m.min=-100 m.max=100
     //% n.min=-100 n.max=100
     export function freestyle(m: number, n: number): void {
@@ -185,7 +185,7 @@ namespace RingbitCar {
     */
     //% weight=10
     //% advanced=true
-    //% blockId=ringbitcar_tracking block="tracking state is %state"
+    //% blockId=ringbitcar_tracking block="je stav sledovače %state"
     export function tracking(state: TrackingStateType): boolean {
         let sensor_pin = AnalogPin.P0
 
@@ -212,7 +212,7 @@ namespace RingbitCar {
     */
     //% weight=9
     //% advanced=true
-    //% blockId=ringbitcar_sonarbit block="ultrasonic distance in unit %Distance_Unit"
+    //% blockId=ringbitcar_sonarbit block="vzdálenost ultrasonického snímače v %distance_unit"
     export function ringbitcar_sonarbit(distance_unit: Distance_Unit): number {
         let sensor_pin = DigitalPin.P0
         if (pin_left_wheel != AnalogPin.P1 && pin_right_wheel != AnalogPin.P1) {
