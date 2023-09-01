@@ -39,7 +39,7 @@ namespace RingbitCar {
     * @param right describe parameter here, eg: AnalogPin.P2
     */
     //% weight=99
-    //% blockId=ringbitcar_init block="set left wheel at pin %left|right wheel at pin %right"
+    //% blockId=ringbitcar_init block="nastav levé kolo na pin %left|pravé kolo na pin %right"
     export function init_wheel(left: AnalogPin, right: AnalogPin): void {
         // Add code here
         pin_left_wheel = left
@@ -228,7 +228,7 @@ namespace RingbitCar {
         control.waitMicros(10);
         pins.digitalWritePin(sensor_pin, 0);
         // read pulse
-        let d = pins.pulseIn(sensor_pin, PulseValue.High, 25000)  // 8 / 340 = 
+        let d = pins.pulseIn(sensor_pin, PulseValue.High, 25000)  // 8 / 340 =
         let distance = d / 58
 
         if (distance > 400) {
